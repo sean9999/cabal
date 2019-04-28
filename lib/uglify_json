@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+var rawjson = "";
+
+process.stdin.on('data', (chunk) => {
+	rawjson += chunk;
+});
+
+process.stdin.on('end', () => {
+
+	const json = JSON.stringify(JSON.parse(rawjson));
+
+	console.log(json);
+});

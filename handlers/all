@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+var payload = "";
+
+const LOG_FILE = "event.log";
+
+process.stdin.on('data', (chunk) => {
+	payload += chunk;
+});
+
+const envs = () => {
+	const r = [];
+	Object.keys(process.env).forEach(k => {
+		if ( /SERF/.test(k) ) {
+			r.push({[k]: process.env[k]});
+		}
+	});
+	return r;
+};
+
+process.stdin.on('end', () => {
+	const r = {
+		env: envs(),
+		payload: payload
+	};
+	const rr = JSON.stringify(r,null,"\t") + "\n";
+	fs.appendFileSync(LOG_FILE, rr);
+});

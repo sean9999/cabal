@@ -1,0 +1,13 @@
+{
+	"meta": {
+		"sig": "asdfasdfasdf",
+		"nonce": "987SD98FYSDF",
+		"sender": {
+			"node": "xps",
+			"cluster": "zoo"
+		}
+	},
+	"body": {
+		"msg": "I am a signed message"
+	}
+}
