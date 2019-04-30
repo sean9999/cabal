@@ -8,6 +8,7 @@ ACTION="$1"
 NONCE="$(uuidgen)"
 SIG="$(openssl rand -base64 16 | tr -d '+\n=')"
 SELF="$(serf info -format json | jq -r '.agent.name')"
+MSG="$2"
 
 PAYLOAD=$(cat <<HEREDOC
 {
@@ -18,13 +19,13 @@ PAYLOAD=$(cat <<HEREDOC
 		"from": "$SELF"
 	},
 	"body": {
-		"msg": "$2"
+		"msg": "$MSG"
 	}
 }
 HEREDOC
 )
 BAYLOAD="$(echo $PAYLOAD | base64)"
 
-#echo "$BAYLOAD" | base64 -d
+#exec ~/.config/serf/callers/marco
 
 serf query "${NAMESPACE}/${ACTION}" "$BAYLOAD"
