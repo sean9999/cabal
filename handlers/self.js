@@ -10,17 +10,21 @@ const p = () => {
 				reject(err);
 			}
 			serf.stats((err, me) => {
-				const r = {
-					"name": me.agent.name
-				};
-				for (let k in me.tags) {
-					if (/cabal/.test(k)) {
-						let shortKey = k.replace('ca.fukt.cabal/', '');
-						let v = me.tags[k];
-						r[shortKey] = v;
+				if (err) {
+					reject(err);
+				} else {
+					const r = {
+						"name": me.agent.name
+					};
+					for (let k in me.tags) {
+						if (/cabal/.test(k)) {
+							let shortKey = k.replace('ca.fukt.cabal/', '');
+							let v = me.tags[k];
+							r[shortKey] = v;
+						}
 					}
+					resolve(r);
 				}
-				resolve(r);
 			});
 			serf.stop();
 		});

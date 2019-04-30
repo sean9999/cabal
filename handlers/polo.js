@@ -41,6 +41,7 @@ const fn = async (payload) => {
 		const me = await getSelf();
 	} catch (e) {
 		console.error(e);
+		say('oh no!');
 	} finally {
 		if (me.name !== payload.meta.from) {
 			//polo(payload);
