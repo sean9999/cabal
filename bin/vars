@@ -1,4 +1,1 @@
-#!/usr/bin/env bash
-
-CABAL_ROOT="$HOME/.config/serf"
-
+CABAL_BIN_ROOT=$HOME/.local/bin

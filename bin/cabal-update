@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 CABAL_ROOT=$HOME/.config/serf
-source $CABAL_ROOT/vars
+source $CABAL_ROOT/bin/vars
 
 cd $CABAL_ROOT
-git wip
-git pull
-cabal-reload
+git wip \
+	&& git pull \
+	&& cabal-binify \
+	&& cabal-reload
