@@ -4,9 +4,20 @@ const {
 	exec
 } = require('child_process');
 
+const os = require('os');
 
 const say = words => {
-	exec('espeak polo', (err, stdout, stderr) => {
+	let cmd = 'espeak polo';
+	switch (os.platform()) {
+		case 'darwin':
+			cmd = 'say polo';
+			break;
+		case 'linux':
+		default:
+			cmd = 'espeak polo';
+			break;
+	}
+	exec($cmd, (err, stdout, stderr) => {
 		if (err) {
 			console.error(err);
 		} else {
@@ -16,14 +27,13 @@ const say = words => {
 };
 
 /*
-
-    'aix'
-    'darwin'
-    'freebsd'
-    'linux'
-    'openbsd'
-    'sunos'
-    'win32'
+	'aix'
+	'darwin'
+	'freebsd'
+	'linux'
+	'openbsd'
+	'sunos'
+	'win32'
 */
 
 const fn = async (payload) => {
@@ -33,7 +43,7 @@ const fn = async (payload) => {
 		say('polo');
 		return 'polo';
 	} else {
-		return 'marco';
+		say('marco is my boss');
 	}
 };
 
