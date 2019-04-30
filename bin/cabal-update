@@ -4,7 +4,9 @@ CABAL_ROOT=$HOME/.config/serf
 source $CABAL_ROOT/bin/vars
 
 cd $CABAL_ROOT
-git wip \
+git add --all . \
+	&& commit -m "wip" \
 	&& git pull \
+	&& git push \
 	&& cabal-binify \
 	&& cabal-reload
