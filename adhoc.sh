@@ -12,7 +12,7 @@ SELF="$(serf info -format json | jq -r '.agent.name')"
 PAYLOAD=$(cat <<HEREDOC
 {
 	"meta": {
-		"none": "${NONCE}",
+		"nonce": "${NONCE}",
 		"sig": "${SIG}",
 		"action": "${ACTION}",
 		"from": "$SELF"
