@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CABAL_ROOT=$HOME/.config/serf
+BIN_ROOT=$HOME/.local/bin
+
+for  f in  `ls $CABAL_ROOT/bin` ; do
+	ln -fs $CABAL_ROOT/bin/$f $BIN_ROOT/$f
+done

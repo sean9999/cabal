@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+CABAL_ROOT=$HOME/.config/serf
+source $CABAL_ROOT/vars
+
+cd $CABAL_ROOT
+git wip
+git pull
+cabal-restart
+

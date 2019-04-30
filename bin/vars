@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 
 CABAL_ROOT="$HOME/.config/serf"
-source $CABAL_ROOT/vars
-
-exec $CABAL_ROOT/adhoc.sh $@
 
