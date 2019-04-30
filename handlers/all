@@ -58,8 +58,6 @@ process.stdin.on('end', () => {
 		"name": env.SERF_EVENT,
 		payload
 	};
-	console.log(msg);
-	console.error(msg);
 	switch (env.SERF_EVENT) {
 
 		case 'user':
