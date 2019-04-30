@@ -1,7 +1,4 @@
-const polo = require('../callers/polo.js');
 const getSelf = require('./self');
-
-const os = require('os');
 
 const {
 	exec
@@ -34,6 +31,9 @@ const fn = async (payload) => {
 	if (me.name !== payload.meta.from) {
 		//polo(payload);
 		say('polo');
+		return 'polo';
+	} else {
+		return 'marco';
 	}
 };
 
