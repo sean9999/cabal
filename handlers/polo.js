@@ -7,7 +7,7 @@ const {
 const os = require('os');
 
 const say = words => {
-	let cmd = 'espeak polo';
+	var cmd = 'espeak polo';
 	switch (os.platform()) {
 		case 'darwin':
 			cmd = 'say polo';
@@ -17,7 +17,7 @@ const say = words => {
 			cmd = 'espeak polo';
 			break;
 	}
-	exec($cmd, (err, stdout, stderr) => {
+	exec(cmd, (err, stdout, stderr) => {
 		if (err) {
 			console.error(err);
 		} else {
@@ -37,13 +37,16 @@ const say = words => {
 */
 
 const fn = async (payload) => {
-	const me = await getSelf();
-	if (me.name !== payload.meta.from) {
-		//polo(payload);
-		say('polo');
-		return 'polo';
-	} else {
-		say('marco is my boss');
+	try {
+		const me = await getSelf();
+	} catch (e) {
+		console.error(e);
+	} finally {
+		if (me.name !== payload.meta.from) {
+			//polo(payload);
+			say('polo');
+			return 'polo';
+		}
 	}
 };
 
