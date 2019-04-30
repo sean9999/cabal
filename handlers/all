@@ -99,7 +99,7 @@ process.stdin.on('end', () => {
 
 		case 'member-join':
 		case 'member-leave':
-		case 'member-update':
+		//case 'member-update':
 		default:
 			let lines = payload.split("\n").shift().trim().split("\t");
 			msg = {
@@ -112,6 +112,9 @@ process.stdin.on('end', () => {
 			};
 			memberEvent(msg);
 			break;
+		case 'member-update':
+		//	don't do nuthin
+		break;
 	}
 	//	log the event
 	const r = msg;
