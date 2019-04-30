@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "eccrypto": "^1.1.1",
+    "sodium": "^3.0.2"
+  }
+}

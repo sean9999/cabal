@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var crypto = require('crypto');
+var ed25519 = require('ed25519');
+
+var sercret_message = 'I like cake';
+
+

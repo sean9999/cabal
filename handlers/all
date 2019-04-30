@@ -1,33 +1,116 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const LOG_FILE_STDOUT = "logs/events.log";
+const LOG_FILE_STDERR = "logs/err.log";
+const CABAL_NAMESPACE = "ca.fukt.cabal";
+const CABAL_VERSION = "v0.0.1";
 
+const memberEvent = require('./memberEvent');
+const catchAll = require('./catchAll');
+const everyoneElse = require('./everyoneElse');
+
+//	process messages passed in to stdin and save to variable $payload
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
-
 var payload = "";
-
-const LOG_FILE = "event.log";
-
 process.stdin.on('data', (chunk) => {
 	payload += chunk;
 });
 
 const envs = () => {
-	const r = [];
+	//	get all SERF-related environment variables
+	var r = {};
 	Object.keys(process.env).forEach(k => {
-		if ( /SERF/.test(k) ) {
-			r.push({[k]: process.env[k]});
+		if (/SERF/.test(k)) {
+			r[k] = process.env[k];
 		}
 	});
 	return r;
 };
 
+const log = json => {
+	try {
+		//	log well-formed messages
+		const rr = JSON.stringify(json, null, "\t") + "\n";
+		fs.appendFileSync(LOG_FILE_STDOUT, rr);
+		return true;
+	} catch (e) {
+		//	also log malformed messages
+		console.error(e);
+		fs.appendFileSync(LOG_FILE_STDERR, json);
+		return false;
+	}
+};
+
+const decodePayload = base64input => {
+	const buf = Buffer.from(base64input.trim(), 'base64');
+	const json = buf.toString('utf8');
+	const r = JSON.parse(json);
+	//const r = json;
+	return r;
+};
+
 process.stdin.on('end', () => {
-	const r = {
-		env: envs(),
-		payload: payload
+	const env = envs();
+	var msg = {
+		"event": "unrecognized user event",
+		"name": env.SERF_EVENT,
+		payload
 	};
-	const rr = JSON.stringify(r,null,"\t") + "\n";
-	fs.appendFileSync(LOG_FILE, rr);
+	switch (env.SERF_EVENT) {
+
+		case 'user':
+			if (/cabal/.test(env.SERF_USER_EVENT)) {
+				msg = JSON.parse(payload);
+				msg.debug = 'special logic awesome UV';
+			} else {
+				//	just log it
+			}
+			break;
+
+		case 'query':
+			if (/^ca\.fukt\.cabal\//.test(env.SERF_QUERY_NAME)) {
+				try {
+					msg = decodePayload(payload);
+					switch (msg.meta.action) {
+						case 'everyone-else':
+							everyoneElse(msg);
+							break;
+						default:
+							catchAll(msg);
+							break;
+					}
+
+				} catch (e) {
+					msg = {
+						"originalMessage": payload,
+						"error": e
+					};
+				}
+			} else {
+				//	just log it
+			}
+			break;
+
+		case 'member-join':
+		case 'member-leave':
+		case 'member-update':
+		default:
+			let lines = payload.split("\n").shift().trim().split("\t");
+			msg = {
+				"event": env.SERF_EVENT,
+				"node": {
+					"name": lines[0],
+					"address": lines[1],
+					"tags": lines[3].split(',')
+				}
+			};
+			memberEvent(msg);
+			break;
+	}
+	//	log the event
+	const r = msg;
+	log(r);
+
 });

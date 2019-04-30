@@ -1,1 +1,7 @@
-{}
+{
+  "ca.fukt.cabal/cluster": "zoo",
+  "ca.fukt.cabal/node/id": "4fc362e6-e6ac-493e-8ed5-006a2cc1bf9d",
+  "ca.fukt.cabal/node/name": "xps",
+  "ca.fukt.cabal/pubkey": "MCowBQYDK2VwAyEAdC7SWP2qNz6q2tIsAG6Nn2RRjySsGhWG2v73NHnAn0c=",
+  "ca.fukt.cabal/version": "v0.0.1"
+}

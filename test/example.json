@@ -1,0 +1,33 @@
+{
+	"meta": {
+		"nonce": "5cb4d8f7-bf3a-4697-ac35-921c85a1123d",
+		"assertions": [{
+				"statement": "true is true"
+			},
+			{
+				"statement": "false is true"
+			},
+			{
+				"statement": "i am a cabal node",
+				"proof": "Sdfsdfsdfsdf"
+			},
+			{
+				"statement": "this message is signed",
+				"sig": ""
+			}
+		]
+
+
+		{
+			"statement": "i am xps",
+
+		},
+		"sender": {
+			"node": "xps",
+			"cluster": "zoo"
+		}
+	},
+	"body": {
+		"msg": "I am a signed message"
+	}
+}
