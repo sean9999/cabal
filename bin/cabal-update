@@ -6,5 +6,4 @@ source $CABAL_ROOT/vars
 cd $CABAL_ROOT
 git wip
 git pull
-cabal-restart
-
+cabal-reload
