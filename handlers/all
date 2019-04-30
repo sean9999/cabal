@@ -9,6 +9,7 @@ const CABAL_VERSION = "v0.0.1";
 const memberEvent = require('./memberEvent');
 const catchAll = require('./catchAll');
 const everyoneElse = require('./everyoneElse');
+const polo = require('./polo');
 
 //	process messages passed in to stdin and save to variable $payload
 process.stdin.resume();
@@ -76,6 +77,9 @@ process.stdin.on('end', () => {
 					switch (msg.meta.action) {
 						case 'everyone-else':
 							everyoneElse(msg);
+							break;
+						case 'marco':
+							polo(msg);
 							break;
 						default:
 							catchAll(msg);
