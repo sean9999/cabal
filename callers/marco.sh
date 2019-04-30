@@ -1,3 +1,4 @@
 #!/bin/bash
 
-cabal marco marco
+echo "marco" | festival --tts \
+	&& cabal marco polo
