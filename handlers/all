@@ -58,6 +58,8 @@ process.stdin.on('end', () => {
 		"name": env.SERF_EVENT,
 		payload
 	};
+	console.log(msg);
+	console.error(msg);
 	switch (env.SERF_EVENT) {
 
 		case 'user':
@@ -103,7 +105,7 @@ process.stdin.on('end', () => {
 				"node": {
 					"name": lines[0],
 					"address": lines[1],
-					"tags": lines[3].split(',')
+					"tags": lines[3]
 				}
 			};
 			memberEvent(msg);

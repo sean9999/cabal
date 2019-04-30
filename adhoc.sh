@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -euo pipefail
+IFS=$'\n\t'
+
 NAMESPACE="ca.fukt.cabal"
 ACTION="$1"
 NONCE="$(uuidgen)"
@@ -20,7 +23,8 @@ PAYLOAD=$(cat <<HEREDOC
 }
 HEREDOC
 )
-BAYLOAD=$(echo "$PAYLOAD" | base64)
+BAYLOAD="$(echo $PAYLOAD | base64)"
+
+#echo "$BAYLOAD" | base64 -d
 
 serf query "${NAMESPACE}/${ACTION}" "$BAYLOAD"
-
