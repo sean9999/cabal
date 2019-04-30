@@ -1,8 +1,24 @@
-#!/usr/bin/env node
+const notifier = require('node-notifier');
 
-var crypto = require('crypto');
-var ed25519 = require('ed25519');
+const fn = (payload) => {
+	notifier.notify({
+		title: `Cabal :: ${payload.meta.action}`,
+		message: `${payload.meta.from} says ${payload.body.msg}`
+	});
+};
 
-var sercret_message = 'I like cake';
+const payload = `
+{
+	"meta": {
+		"none": "cddb3fd4-70f2-4729-ba52-52c34001cdeb",
+		"sig": "BqZPfuNGOzI1/XHh7B0fKg",
+		"action": "everybody-else",
+		"from": "kyle"
+	},
+	"body": {
+		"msg": "poop"
+	}
+}
+`;
 
-
+fn( JSON.parse(payload) );
