@@ -9,7 +9,9 @@ const fn = async (payload) => {
 			"title": `Cabal :: ${payload.meta.from}`,
 			"message": `${payload.body.msg}`
 		});
-		console.log('hiya from' + me.name);
+		return `${me.name} got the message`;
+	} else {
+		return false;
 	}
 };
 

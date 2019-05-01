@@ -76,7 +76,13 @@ process.stdin.on('end', () => {
 					msg = decodePayload(payload);
 					switch (msg.meta.action) {
 						case 'everyone-else':
-							everyoneElse(msg);
+							everyoneElse(msg).then(response => {
+								if (response) {
+									console.log(response);
+								} else {
+									console.log('i am me');
+								}
+							});
 							break;
 						case 'marco':
 							polo(msg);
@@ -85,7 +91,6 @@ process.stdin.on('end', () => {
 							catchAll(msg);
 							break;
 					}
-
 				} catch (e) {
 					msg = {
 						"originalMessage": payload,
