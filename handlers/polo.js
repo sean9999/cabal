@@ -11,7 +11,7 @@ const say = words => {
 	var cmd = 'espeak polo';
 	switch (os.platform()) {
 		case 'darwin':
-			cmd = 'say polo';
+			cmd = '/usr/bin/say polo';
 			break;
 		case 'linux':
 		default:
