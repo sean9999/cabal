@@ -20,13 +20,12 @@ const say = words => {
 	}
 	exec(cmd, (err, stdout, stderr) => {
 		if (err) {
-			console.error(err);
+			console.error(stderr);
 			reject(err);
 		} else {
 			resolve(stdout);
 			console.log('polo');
 		}
-	});
 	});
 };
 

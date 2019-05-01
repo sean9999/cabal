@@ -85,7 +85,7 @@ process.stdin.on('end', () => {
 							});
 							break;
 						case 'marco':
-							polo(msg);
+							polo(msg).then(console.log).catch(console.error);
 							break;
 						default:
 							catchAll(msg);
