@@ -13,7 +13,8 @@ SELF="$(serf info -format json | jq -r '.agent.name')"
 function envelope() {
 	##	message uniqueness and integrity
 	export ACTION="$1"
-	export MSG="$2"
+	shift
+	export MSG="$@"
 	export NONCE="$(uuidgen)"
 	export SIG="$(openssl rand -base64 16 | tr -d '+\n=')"
 	export NAMESPACE VERSION SELF
