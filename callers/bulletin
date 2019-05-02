@@ -3,9 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-#	A bulletin is a message that goes to everyone but the sender.
+##	A bulletin is a message that goes to everyone but the sender.
 
-CABAL_ROOT="$(git root)"
 source $CABAL_ROOT/callers/includes.sh
 
 cabal_query "everyone-else" "$@"

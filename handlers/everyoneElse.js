@@ -11,7 +11,7 @@ const fn = async (payload) => {
 		});
 		return `${me.name} got the message`;
 	} else {
-		return payload.body.msg;
+		return `${me.name} sent the message`;
 	}
 };
 

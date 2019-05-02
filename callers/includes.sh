@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-CABAL_ROOT="$(git root)"
+CABAL_ROOT="$HOME/.config/serf"
 
 ##	globals
 NAMESPACE="ca.fukt.cabal"
