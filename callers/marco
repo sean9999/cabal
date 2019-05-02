@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo "marco" | festival --tts
+echo "marco" | festival --tts \
+	&& cabal marco x

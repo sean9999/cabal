@@ -1,10 +1,11 @@
 const notifier = require('node-notifier');
 
-const fn = (payload) => {
+const fn = async (payload) => {
 	notifier.notify({
-		title: `Cabal :: ${payload.meta.from}`,
-		message: `${payload.body.msg}`
+		"title": `Cabal :: ${payload.meta.action}`,
+		"message": `${payload.meta.sender} says ${payload.body.msg}`
 	});
+	return `msg: ${payload.body.msg}`;
 };
 
 module.exports = fn;

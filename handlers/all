@@ -88,7 +88,8 @@ process.stdin.on('end', () => {
 							polo(msg).then(console.log).catch(console.error);
 							break;
 						default:
-							catchAll(msg);
+							//console.log(msg);
+							catchAll(msg).then(console.log).catch(console.error);
 							break;
 					}
 				} catch (e) {

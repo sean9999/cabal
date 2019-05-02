@@ -8,8 +8,8 @@ const os = require('os');
 
 const say = words => {
 	return Promise((resolve,reject) => {
-	var cmd = 'espeak polo';
-	switch (os.platform()) {
+		var cmd = 'espeak polo';
+		switch (os.platform()) {
 		case 'darwin':
 			cmd = '/usr/bin/say polo';
 			break;
@@ -17,15 +17,16 @@ const say = words => {
 		default:
 			cmd = 'espeak polo';
 			break;
-	}
-	exec(cmd, (err, stdout, stderr) => {
-		if (err) {
+		}
+		exec(cmd, (err, stdout, stderr) => {
+			if (err) {
 			console.error(stderr);
 			reject(err);
-		} else {
-			resolve(stdout);
+			} else {
+			resolve('polo');
 			console.log('polo');
-		}
+			}
+		});
 	});
 };
 
