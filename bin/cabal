@@ -3,5 +3,11 @@
 CABAL_ROOT="$HOME/.config/serf"
 source $CABAL_ROOT/bin/vars
 
-exec $CABAL_ROOT/adhoc.sh $@
+CABAL_SUBMODULE=$1
+shift
+ARGS=$@
+
+exec $CABAL_ROOT/callers/$CABAL_SUBMODULE $ARGS
+
+
 
