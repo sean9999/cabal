@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+source $CABAL_ROOT/callers/includes.sh
+
+env | grep -i CABAL

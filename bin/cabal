@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 CABAL_ROOT="$HOME/.config/serf"
-source $CABAL_ROOT/bin/vars
+source "$CABAL_ROOT/bin/vars"
 
-CABAL_SUBMODULE="$1"
+CABAL_SUBMODULE="${1}"
 shift
 ARGS="$@"
 
 export CABAL_ROOT
-exec $CABAL_ROOT/callers/$CABAL_SUBMODULE "$ARGS"
+exec "$CABAL_ROOT/callers/$CABAL_SUBMODULE" "$ARGS"

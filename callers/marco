@@ -6,7 +6,11 @@ IFS=$'\n\t'
 source $CABAL_ROOT/callers/includes.sh
 
 function say_marco() {
-	echo "marco" | festival --tts
+	if [ $(uname) = "Darwin" ]; then
+		say "marco"
+	else
+		echo "marco" | festival --tts
+	fi
 }
 
 say_marco && cabal_query marco x
