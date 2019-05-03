@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+##	A bulletin is a message that goes to everyone but the sender.
+
+source $CABAL_ROOT/callers/includes.sh
+
+cabal_query "everyone-else" "$@"

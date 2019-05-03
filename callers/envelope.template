@@ -1,0 +1,12 @@
+{
+	"meta": {
+		"version": "${VERSION}",
+		"nonce": "${NONCE}",
+		"sig": "${SIG}",
+		"action": "${ACTION}",
+		"sender": "${SELF}"
+	},
+	"body": {
+		"msg": "${MSG}"
+	}
+}

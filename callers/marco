@@ -1,4 +1,12 @@
 #!/bin/bash
 
-echo "marco" | festival --tts \
-	&& cabal marco x
+set -euo pipefail
+IFS=$'\n\t'
+
+source $CABAL_ROOT/callers/includes.sh
+
+function say_marco() {
+	echo "marco" | festival --tts
+}
+
+say_marco && cabal_query marco x
