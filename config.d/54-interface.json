@@ -1,0 +1,10 @@
+{
+	"discover": "zoo",
+	"event_handlers": [
+		"\/home\/seanmacdonald\/.config\/serf\/handlers\/all"
+	],
+	"profile": "lan",
+	"replay_on_join": true,
+	"tags_file": "tags.json",
+	"interface": "wlp58s0"
+}
