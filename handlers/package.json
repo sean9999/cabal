@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "ed25519": "^0.0.4",
     "node-notifier": "^5.4.0",
     "serf-rpc": "^0.2.1"
   }

@@ -1,3 +1,5 @@
 {
-	"discover": "zoo"
+	"tags": {
+		"ca.fukt.cabal/cluster": "zoo"
+	}
 }

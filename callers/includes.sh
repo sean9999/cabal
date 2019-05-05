@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -euo pipefail
-IFS=$'\n\t'
-
-CABAL_ROOT="$HOME/.config/serf"
+#set -euo pipefail
+#IFS=$'\n\t'
 
 ##	globals
 NAMESPACE="ca.fukt.cabal"
@@ -21,8 +19,8 @@ function envelope() {
 	##	the message
 	PAYLOAD="$(cat $CABAL_ROOT/callers/envelope.template)"
 	##	compress json, and base64 encode it
-	BAYLOAD="$(echo $PAYLOAD | envsubst | jq --slurp -Mc '.[0]' | base64)"
-	echo "$BAYLOAD"
+	#BAYLOAD="$(echo $PAYLOAD | envsubst | jq --slurp -Mc '.' | base64)"
+	echo "$PAYLOAD"
 }
 
 function cabal_query() {

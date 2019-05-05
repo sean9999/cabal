@@ -1,3 +1,5 @@
 #!/bin/bash
 
-serf agent -config-file=config.json -keyring-file=key/ring.json
+CABAL_ROOT="$HOME/.config/serf"
+
+sudo serf agent -config-dir=$CABAL_ROOT/config.d -keyring-file=$CABAL_ROOT/key/ring.json

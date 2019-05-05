@@ -1,7 +1,6 @@
 {
 	"tags": {
-		"ca.fukt.cabal/cluster": "zoo",
-		"ca.fukt.cabal/node/id": "asdfasdfasdf",
-		"ca.fukt.cabal/pubkey/ed25519": "asdfasdfasdfasdf"
+		"ca.fukt.cabal/node/id": "842AA76B-F0DD-440D-9237-3AE6F9EA016E",
+		"ca.fukt.cabal/pubkey/ed25519": "MCowBQYDK2VwAyEAqM1SMjXsdlZWUaf7iDwB0ms0ZVicb5M3NAs2WBiK/+M="
 	}
 }

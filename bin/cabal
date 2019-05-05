@@ -8,4 +8,4 @@ shift
 ARGS="$@"
 
 export CABAL_ROOT
-exec "$CABAL_ROOT/callers/$CABAL_SUBMODULE" "$ARGS"
+eval "$CABAL_ROOT/callers/$CABAL_SUBMODULE" "$ARGS"
