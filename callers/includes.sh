@@ -27,7 +27,7 @@ function cabal_query() {
 	BAYLOAD="$(envelope $1 $2)"
 	serf query \
 		--no-ack \
-		-timeout="5s" \
+		-timeout="0s" \
 		-tag "ca.fukt.cabal/cluster=zoo" \
 		"${NAMESPACE}/${1}" "${BAYLOAD}"
 }

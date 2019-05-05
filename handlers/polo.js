@@ -9,7 +9,7 @@ const say = words => {
 		var cmd = 'espeak polo';
 		switch (os.platform()) {
 		case 'darwin':
-			cmd = '/usr/bin/say polo';
+			cmd = 'say polo';
 			break;
 		case 'linux':
 		default:
@@ -40,7 +40,7 @@ const fn = async (payload) => {
 		}
 	} catch (e) {
 		console.error(e);
-		await say('oh no');
+		await say('oh no!');
 		throw Error('Could not complete operation in polo');
 	}
 	return r;
