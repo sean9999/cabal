@@ -9,7 +9,8 @@ function say_marco() {
 	if [ $(uname) = "Darwin" ]; then
 		say "marco"
 	else
-		echo "marco" | festival --tts
+		#echo "marco" | festival --tts
+		espeak-ng "marco"
 	fi
 }
 
