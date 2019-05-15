@@ -1,0 +1,12 @@
+[Unit]
+Description=Cabal does stuff after sleep
+After=sleep.target
+#StopWhenUnneeded=true
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'echo "$(date)	user::cabal after sleep" >> /tmp/cabal/sleep_events.log'
+
+[Install]
+WantedBy=sleep.target

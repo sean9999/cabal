@@ -3,6 +3,6 @@
 		"\/home\/seanmacdonald\/.config\/serf\/handlers\/all"
 	],
 	"profile": "lan",
-	"replay_on_join": true,
+	"replay_on_join": false,
 	"tags_file": "tags.json"
 }
