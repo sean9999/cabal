@@ -36,7 +36,5 @@ function cabal_query() {
 
 function cabal_event() {
 	BAYLOAD="$(envelope $1 $2)"
-	serf event \
-		-tag "ca.fukt.cabal/cluster=zoo" \
-		"${NAMESPACE}/${1}" "${BAYLOAD}"
+	serf event "${NAMESPACE}/${1}" "${BAYLOAD}"
 }
