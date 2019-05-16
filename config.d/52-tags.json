@@ -1,7 +1,0 @@
-{
-	"tags": {
-		"ca.fukt.cabal/cluster": "zoo",
-		"ca.fukt.cabal/node/id": "asdfasdfasdf",
-		"ca.fukt.cabal/pubkey/ed25519": "asdfasdfasdfasdf"
-	}
-}
