@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const os = require('os');
 
 const say = words => {
-	return Promise((resolve,reject) => {
+	return new Promise((resolve,reject) => {
 		var cmd = 'espeak polo';
 		switch (os.platform()) {
 		case 'darwin':
@@ -21,8 +21,8 @@ const say = words => {
 				console.error(stderr);
 				reject(err);
 			} else {
-				resolve('polo');
 				console.log('polo');
+				resolve('polo');
 			}
 		});
 	});
