@@ -21,7 +21,7 @@ function envelope() {
 	##	the message
 	PAYLOAD="$(cat $CABAL_ROOT/callers/envelope.template)"
 	##	compress json, and base64 encode it
-	BAYLOAD="$(echo $PAYLOAD | envsubst | jq --slurp -Mc '.[0]' | base64)"
+	BAYLOAD="$(echo $PAYLOAD | envsubst | jq --slurp -Mac '.[0]' | base64 --wrap=0)"
 	echo "$BAYLOAD"
 }
 
@@ -36,5 +36,8 @@ function cabal_query() {
 
 function cabal_event() {
 	BAYLOAD="$(envelope $1 $2)"
+
+	echo $BAYLOAD >> $CABAL_ROOT/bayload.txt
+
 	serf event "${NAMESPACE}/${1}" "${BAYLOAD}"
 }
