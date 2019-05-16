@@ -36,8 +36,5 @@ function cabal_query() {
 
 function cabal_event() {
 	BAYLOAD="$(envelope $1 $2)"
-
-	echo $BAYLOAD >> $CABAL_ROOT/bayload.txt
-
 	serf event "${NAMESPACE}/${1}" "${BAYLOAD}"
 }

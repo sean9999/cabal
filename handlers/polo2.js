@@ -11,11 +11,11 @@ const say = words => {
 		var cmd;
 		switch (os.platform()) {
 			case 'darwin':
-				cmd = 'say polo two';
+				cmd = 'say two polo';
 				break;
 			case 'linux':
 			default:
-				cmd = 'espeak polo two';
+				cmd = 'espeak two polo';
 				break;
 		}
 		exec(cmd, (err, stdout, stderr) => {
@@ -35,7 +35,7 @@ const fn = async (payload) => {
 	try {
 		const me = await getSelf();
 		if (me.name !== payload.meta.sender) {
-			await say('polo two');
+			await say('two polo');
 			r = true;
 		} else {
 			r = false;
