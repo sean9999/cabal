@@ -66,7 +66,13 @@ process.stdin.on('end', () => {
 		case 'user':
 			if (/cabal/.test(env.SERF_USER_EVENT)) {
 				msg = JSON.parse(payload);
-				msg.debug = 'special logic awesome UV';
+				switch (msg.meta.action) {
+					case 'marco2':
+						polo2(msg).then(console.log).catch(console.error);
+						break;
+					default:
+						msg.debug = 'A custom user event with no handler';
+				}
 			} else {
 				//	just log it
 			}
@@ -85,9 +91,6 @@ process.stdin.on('end', () => {
 									console.log('i am me');
 								}
 							});
-							break;
-						case 'marco2':
-							polo2(msg).then(console.log).catch(console.error);
 							break;
 						case 'marco':
 							polo(msg).then(console.log).catch(console.error);
