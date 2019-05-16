@@ -65,7 +65,7 @@ process.stdin.on('end', () => {
 
 		case 'user':
 			if (/cabal/.test(env.SERF_USER_EVENT)) {
-				msg = JSON.parse(payload);
+				msg = decodePayload(payload);
 				switch (msg.meta.action) {
 					case 'marco2':
 						polo2(msg).then(console.log).catch(console.error);

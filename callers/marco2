@@ -14,4 +14,4 @@ function say_marco() {
 	fi
 }
 
-say_marco && cabal_event marco x
+say_marco && cabal_event marco2 x
