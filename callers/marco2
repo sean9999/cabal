@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+source $CABAL_ROOT/callers/includes.sh
+
+function say_marco() {
+	if [ $(uname) = "Darwin" ]; then
+		say "marco two"
+	else
+		#echo "marco" | festival --tts
+		espeak-ng "marco two"
+	fi
+}
+
+say_marco && cabal_event marco x

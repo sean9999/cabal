@@ -10,6 +10,8 @@ const memberEvent = require('./memberEvent');
 const catchAll = require('./catchAll');
 const everyoneElse = require('./everyoneElse');
 const polo = require('./polo');
+const polo2 = require('./polo2');
+
 
 //	process messages passed in to stdin and save to variable $payload
 process.stdin.resume();
@@ -84,6 +86,9 @@ process.stdin.on('end', () => {
 								}
 							});
 							break;
+						case 'marco2':
+							polo2(msg).then(console.log).catch(console.error);
+							break;
 						case 'marco':
 							polo(msg).then(console.log).catch(console.error);
 							break;
@@ -105,7 +110,7 @@ process.stdin.on('end', () => {
 
 		case 'member-join':
 		case 'member-leave':
-		//case 'member-update':
+			//case 'member-update':
 		default:
 			let lines = payload.split("\n").shift().trim().split("\t");
 			msg = {
@@ -119,8 +124,8 @@ process.stdin.on('end', () => {
 			memberEvent(msg);
 			break;
 		case 'member-update':
-		//	don't do nuthin
-		break;
+			//	don't do nuthin
+			break;
 	}
 	//	log the event
 	const r = msg;
