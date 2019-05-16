@@ -10,6 +10,8 @@ const memberEvent = require('./memberEvent');
 const catchAll = require('./catchAll');
 const everyoneElse = require('./everyoneElse');
 const polo = require('./polo');
+const polo2 = require('./polo2');
+
 
 //	process messages passed in to stdin and save to variable $payload
 process.stdin.resume();
@@ -63,8 +65,14 @@ process.stdin.on('end', () => {
 
 		case 'user':
 			if (/cabal/.test(env.SERF_USER_EVENT)) {
-				msg = JSON.parse(payload);
-				msg.debug = 'special logic awesome UV';
+				msg = decodePayload(payload);
+				switch (msg.meta.action) {
+					case 'marco2':
+						polo2(msg).then(console.log).catch(console.error);
+						break;
+					default:
+						msg.debug = 'A custom user event with no handler';
+				}
 			} else {
 				//	just log it
 			}
@@ -105,7 +113,7 @@ process.stdin.on('end', () => {
 
 		case 'member-join':
 		case 'member-leave':
-		//case 'member-update':
+			//case 'member-update':
 		default:
 			let lines = payload.split("\n").shift().trim().split("\t");
 			msg = {
@@ -119,8 +127,8 @@ process.stdin.on('end', () => {
 			memberEvent(msg);
 			break;
 		case 'member-update':
-		//	don't do nuthin
-		break;
+			//	don't do nuthin
+			break;
 	}
 	//	log the event
 	const r = msg;

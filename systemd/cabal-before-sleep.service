@@ -1,0 +1,12 @@
+[Unit]
+Description=Cabal does stuff before sleep
+Before=sleep.target
+#StopWhenUnneeded=true
+
+[Service]
+Type=oneshot
+#RemainAfterExit=yes
+ExecStart=/bin/sh -c 'echo "$(date)	cabal::user before sleep" >> /tmp/cabal/sleep_events.log'
+
+[Install]
+WantedBy=sleep.target

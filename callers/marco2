@@ -7,11 +7,11 @@ source $CABAL_ROOT/callers/includes.sh
 
 function say_marco() {
 	if [ $(uname) = "Darwin" ]; then
-		say "marco"
+		say "marco two"
 	else
 		#echo "marco" | festival --tts
-		espeak-ng "marco"
+		espeak-ng "marco two"
 	fi
 }
 
-say_marco && cabal_query marco x
+say_marco && cabal_event marco2 x
