@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "I'm Cabal. And I am an RPM package"
+
+
