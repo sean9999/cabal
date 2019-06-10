@@ -29,12 +29,14 @@ function cabal_query() {
 	BAYLOAD="$(envelope $1 $2)"
 	serf query \
 		--no-ack \
-		-timeout="0s" \
+		-timeout="1s" \
 		-tag "ca.fukt.cabal/cluster=zoo" \
 		"${NAMESPACE}/${1}" "${BAYLOAD}"
 }
 
 function cabal_event() {
 	BAYLOAD="$(envelope $1 $2)"
-	serf event "${NAMESPACE}/${1}" "${BAYLOAD}"
+	serf event \
+		-coalesce=false \
+		"${NAMESPACE}/${1}" "${BAYLOAD}"
 }

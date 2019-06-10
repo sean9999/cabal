@@ -18,7 +18,7 @@ const fn = (msg) => {
 	}
 	//	notify operator
 	notifier.notify({
-		title: msg.event,
+		title: 'cabal',
 		message
 	});
 };
