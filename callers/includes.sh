@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -euo pipefail
-IFS=$'\n\t'
-
-CABAL_ROOT="$HOME/.config/serf"
+#set -euo pipefail
+#IFS=$'\n\t'
 
 ##	globals
 NAMESPACE="ca.fukt.cabal"
