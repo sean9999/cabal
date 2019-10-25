@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#set -euo pipefail
-#IFS=$'\n\t'
+set -euo pipefail
+IFS=$'\n\t'
 
 ##	globals
 NAMESPACE="ca.fukt.cabal"
