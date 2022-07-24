@@ -1,20 +1,20 @@
-const getSelf = require('./self');
+const getSelf = require('./self').default;
 
 const { exec } = require('child_process');
 
 const os = require('os');
 
 const say = words => {
-	return new Promise((resolve,reject) => {
+	return new Promise((resolve, reject) => {
 		var cmd = 'espeak polo';
 		switch (os.platform()) {
-		case 'darwin':
-			cmd = 'say polo';
-			break;
-		case 'linux':
-		default:
-			cmd = 'espeak polo';
-			break;
+			case 'darwin':
+				cmd = 'say polo';
+				break;
+			case 'linux':
+			default:
+				cmd = 'espeak polo';
+				break;
 		}
 		exec(cmd, (err, stdout, stderr) => {
 			if (err) {

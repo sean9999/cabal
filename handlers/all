@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/local/bin/node
 
 const fs = require('fs');
 const LOG_FILE_STDOUT = "logs/events.log";
@@ -113,7 +113,7 @@ process.stdin.on('end', () => {
 
 		case 'member-join':
 		case 'member-leave':
-			//case 'member-update':
+		//case 'member-update':
 		default:
 			let lines = payload.split("\n").shift().trim().split("\t");
 			msg = {

@@ -1,6 +1,6 @@
 const notifier = require('node-notifier');
 
-const getSelf = require('./self');
+const getSelf = require('./self').default;
 
 const fn = async (payload) => {
 	const me = await getSelf();

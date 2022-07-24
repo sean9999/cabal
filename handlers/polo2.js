@@ -1,4 +1,4 @@
-const getSelf = require('./self');
+const getSelf = require('./self').default;
 
 const {
 	exec

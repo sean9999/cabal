@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-var SerfRPC = require("serf-rpc");
-var serf = new SerfRPC();
+import SerfRPC from "serf-rpc";
+const serf = new SerfRPC();
 
 const p = () => {
 	return new Promise((resolve, reject) => {
@@ -31,4 +31,4 @@ const p = () => {
 	});
 };
 
-module.exports = p;
+export default p;

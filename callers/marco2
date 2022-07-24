@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+CABAL_ROOT="$(git rev-parse --show-toplevel)"
+
 source $CABAL_ROOT/callers/includes.sh
 
 function say_marco() {

@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+CABAL_ROOT="$(git rev-parse --show-toplevel)"
+
 ##	A bulletin is a message that goes to everyone but the sender.
 
 source $CABAL_ROOT/callers/includes.sh

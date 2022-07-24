@@ -1,4 +1,4 @@
-const notifier = require('node-notifier');
+import { notify } from 'node-notifier';
 
 const fn = (msg) => {
 	var message;
@@ -17,10 +17,10 @@ const fn = (msg) => {
 			break;
 	}
 	//	notify operator
-	notifier.notify({
+	notify({
 		title: 'cabal',
 		message
 	});
 };
 
-module.exports = fn;
+export default fn;
