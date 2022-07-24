@@ -3,3 +3,4 @@ node_modules/
 key/*.pem
 config.d/self.json
 config.d/network.json
+dist/

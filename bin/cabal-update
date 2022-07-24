@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CABAL_ROOT=$HOME/.config/serf
+source "$(git rev-parse --show-toplevel)/vars.sh"
 source $CABAL_ROOT/bin/vars
 
 cd $CABAL_ROOT

@@ -1,6 +1,6 @@
 {
 	"meta": {
-		"version": "${VERSION}",
+		"version": "${CABAL_VERSION}",
 		"nonce": "${NONCE}",
 		"sig": "${SIG}",
 		"action": "${ACTION}",

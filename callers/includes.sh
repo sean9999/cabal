@@ -4,8 +4,6 @@ set -euo pipefail
 IFS=$'\n\t'
 
 ##	globals
-NAMESPACE="ca.fukt.cabal"
-VERSION="v0.0.1"
 SELF="$(serf info -format json | jq -r '.agent.name')"
 
 function envelope() {
@@ -15,7 +13,7 @@ function envelope() {
 	export MSG="$@"
 	export NONCE="$(uuidgen)"
 	export SIG="$(openssl rand -base64 16 | tr -d '+\n=')"
-	export NAMESPACE VERSION SELF
+	export CABAL_NAMESPACE CABAL_VERSION SELF
 	##	the message
 	PAYLOAD="$(cat $CABAL_ROOT/callers/envelope.template)"
 	##	compress json, and base64 encode it
@@ -25,16 +23,13 @@ function envelope() {
 
 function cabal_query() {
 	BAYLOAD="$(envelope $1 $2)"
-	serf query \
-		--no-ack \
-		-timeout="1s" \
-		-tag "ca.fukt.cabal/cluster=zoo" \
-		"${NAMESPACE}/${1}" "${BAYLOAD}"
+	serf query --no-ack -timeout="1s" \
+		-tag "ca.fukt.cabal/cluster=${CABAL_CLUSTER}" \
+		"${CABAL_NAMESPACE}/${1}" "${BAYLOAD}"
 }
 
 function cabal_event() {
 	BAYLOAD="$(envelope $1 $2)"
-	serf event \
-		-coalesce=false \
-		"${NAMESPACE}/${1}" "${BAYLOAD}"
+	serf event -coalesce=false \
+		"${CABAL_NAMESPACE}/${1}" "${BAYLOAD}"
 }

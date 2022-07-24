@@ -1,0 +1,14 @@
+[Unit]
+Description=Cabal is an inter-node communication service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=serf agent -config-dir=${CABAL_ROOT}/config.d -keyring-file=${CABAL_ROOT}/key/ring.json
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+Restart=always
+RestartSec=11
+
+[Install]
+WantedBy=default.target

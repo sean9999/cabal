@@ -1,8 +1,5 @@
 #!/bin/bash
 
-CABAL_ROOT=$HOME/.config/serf
-source $CABAL_ROOT/bin/vars
-
 for  f in  `ls $CABAL_ROOT/bin` ; do
 	ln -fs $CABAL_ROOT/bin/$f $CABAL_BIN_ROOT/$f
 done
