@@ -5,3 +5,7 @@ systemctl --user daemon-reload
 
 ##	restart service
 systemctl --user start serf@seanmacdonald
+
+##	watch logs
+journalctl --user --unit serf@seanmacdonald -f
+
