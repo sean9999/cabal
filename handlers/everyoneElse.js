@@ -1,11 +1,11 @@
-const notifier = require('node-notifier');
+import { notify } from 'node-notifier';
 
-const getSelf = require('./self');
+import getSelf from './self';
 
 const fn = async (payload) => {
 	const me = await getSelf();
 	if (me.name !== payload.meta.sender) {
-		notifier.notify({
+		notify({
 			"title": `Cabal :: ${payload.meta.sender}`,
 			"message": `${payload.body.msg}`
 		});
@@ -15,4 +15,4 @@ const fn = async (payload) => {
 	}
 };
 
-module.exports = fn;
+export default fn;

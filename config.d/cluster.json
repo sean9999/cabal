@@ -1,6 +1,6 @@
 {
-	"discover": "zoo",
+	"discover": "${CABAL_CLUSTER}",
 	"tags": {
-		"ca.fukt.cabal/cluster": "zoo"
+		"${CABAL_NAMESPACE}/cluster": "${CABAL_CLUSTER}"
 	}
 }

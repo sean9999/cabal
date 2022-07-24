@@ -1,20 +1,20 @@
-const getSelf = require('./self');
+import getSelf from './self';
 
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
-const os = require('os');
+import { platform } from 'os';
 
 const say = words => {
-	return new Promise((resolve,reject) => {
+	return new Promise((resolve, reject) => {
 		var cmd = 'espeak polo';
-		switch (os.platform()) {
-		case 'darwin':
-			cmd = 'say polo';
-			break;
-		case 'linux':
-		default:
-			cmd = 'espeak polo';
-			break;
+		switch (platform()) {
+			case 'darwin':
+				cmd = 'say polo';
+				break;
+			case 'linux':
+			default:
+				cmd = 'espeak polo';
+				break;
 		}
 		exec(cmd, (err, stdout, stderr) => {
 			if (err) {
@@ -46,4 +46,4 @@ const fn = async (payload) => {
 	return r;
 };
 
-module.exports = fn;
+export default fn;

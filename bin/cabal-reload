@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ##	reload service
-systemctl --user reload serf@seanmacdonald
+systemctl --user reload serf@cabal

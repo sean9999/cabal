@@ -1,7 +1,8 @@
 {
 	"meta": {
 		"nonce": "5cb4d8f7-bf3a-4697-ac35-921c85a1123d",
-		"assertions": [{
+		"assertions": [
+			{
 				"statement": "true is true"
 			},
 			{
@@ -15,13 +16,7 @@
 				"statement": "this message is signed",
 				"sig": ""
 			}
-		]
-
-
-		{
-			"statement": "i am xps",
-
-		},
+		],
 		"sender": {
 			"node": "xps",
 			"cluster": "zoo"

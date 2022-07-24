@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var SerfRPC = require("serf-rpc");
+import SerfRPC from "serf-rpc";
 var serf = new SerfRPC();
 
 const p = () => {
@@ -31,4 +31,4 @@ const p = () => {
 	});
 };
 
-module.exports = p;
+export default p;

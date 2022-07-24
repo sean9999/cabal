@@ -8,15 +8,15 @@
     <array>
       <string>/usr/local/bin/serf</string>
       <string>agent</string>
-      <string>-config-file</string>
-      <string>/Users/seanmacdonald/.config/serf/config.json</string>
+      <string>-config-dir</string>
+      <string>${CABAL_ROOT}/config.d</string>
       <string>-keyring-file</string>
-      <string>/Users/seanmacdonald/.config/serf/key/ring.json</string>
+      <string>${CABAL_ROOT}/key/ring.json</string>
     </array>
     <key>ServiceDescription</key>
     <string>serf</string>
     <key>WorkingDirectory</key>
-    <string>/Users/seanmacdonald/.config/serf</string>
+    <string>${CABAL_ROOT}</string>
     <key>RunAtLoad</key>
     <true/>
 </dict>

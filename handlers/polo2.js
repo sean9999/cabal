@@ -1,15 +1,13 @@
-const getSelf = require('./self');
+import getSelf from './self';
 
-const {
-	exec
-} = require('child_process');
+import { exec } from 'child_process';
 
-const os = require('os');
+import { platform } from 'os';
 
 const say = words => {
 	return new Promise((resolve, reject) => {
 		var cmd;
-		switch (os.platform()) {
+		switch (platform()) {
 			case 'darwin':
 				cmd = 'say two polo';
 				break;
@@ -48,4 +46,4 @@ const fn = async (payload) => {
 	return r;
 };
 
-module.exports = fn;
+export default fn;

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const crypto = require('crypto');
-const fs = require('fs');
+import { generateKeyPairSync } from 'crypto';
+import { writeFileSync } from 'fs';
 
 const KEYTYPE = 'ed25519';
 const FILEFORMAT = 'pem';
 
-var keys = crypto.generateKeyPairSync(KEYTYPE, {});
+var keys = generateKeyPairSync(KEYTYPE, {});
 
 var priv = keys.privateKey.export({
 	type: "pkcs8",
@@ -17,10 +17,10 @@ var pub = keys.publicKey.export({
 	format: FILEFORMAT
 });
 
-fs.writeFileSync(`./${KEYTYPE}.pub.${FILEFORMAT}`, pub, {
+writeFileSync(`./${KEYTYPE}.pub.${FILEFORMAT}`, pub, {
 	encoding: "utf8"
 });
-fs.writeFileSync(`./${KEYTYPE}.priv.${FILEFORMAT}`, priv, {
+writeFileSync(`./${KEYTYPE}.priv.${FILEFORMAT}`, priv, {
 	encoding: "utf8"
 });
 

@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-NAMESPACE="ca.fukt.cabal"
+NAMESPACE="${CABAL_NAMESPACE}"
 ACTION="$1"
 NONCE="$(uuidgen)"
 SIG="$(openssl rand -base64 16 | tr -d '+\n=')"

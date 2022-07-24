@@ -1,5 +1,9 @@
 #!/bin/bash
 
-CABAL_ROOT="$HOME/.config/serf"
+source "$(git rev-parse --show-toplevel)/vars.sh"
 
-serf agent -config-dir=$CABAL_ROOT/config.d -keyring-file=$CABAL_ROOT/key/ring.json
+serf agent \
+	-config-dir=$CABAL_ROOT/config.d \
+	-keyring-file=$CABAL_ROOT/key/ring.json \
+	-bind=0.0.0.0:$CABAL_PORT \
+	-log-level=$CABAL_LOG_LEVEL
