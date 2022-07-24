@@ -4,8 +4,8 @@
 systemctl --user daemon-reload
 
 ##	restart service
-systemctl --user start serf@cabal
+systemctl --user start cabal
 
 ##	watch logs
-journalctl --user --unit serf@cabcal -f
+journalctl --user --unit cabal -f
 

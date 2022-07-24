@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-source "$(git rev-parse --show-toplevel)/vars.sh"
-source $CABAL_ROOT/bin/vars
-
 cd $CABAL_ROOT
 git add --all . \
 	&& commit -m "wip" \

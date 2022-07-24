@@ -4,5 +4,5 @@ CABAL_SUBMODULE="${1}"
 shift
 ARGS="$@"
 
-export CABAL_ROOT
-eval "$CABAL_ROOT/callers/$CABAL_SUBMODULE" "$ARGS"
+export CABAL_ROOT=$CABAL_ROOT
+eval "${CABAL_ROOT}/callers/$CABAL_SUBMODULE" "$ARGS"
