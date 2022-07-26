@@ -1,0 +1,137 @@
+#!/bin/env node
+
+import { appendFileSync } from 'fs';
+const LOG_FILE_STDOUT = "logs/events.log";
+const LOG_FILE_STDERR = "logs/err.log";
+const CABAL_NAMESPACE = "ca.fukt.cabal";
+const CABAL_VERSION = "v0.0.2";
+
+import memberEvent from './memberEvent.mjs';
+import catchAll from './catchAll.mjs';
+import everyoneElse from './everyoneElse.mjs';
+import polo from './polo.mjs';
+import polo2 from './polo2.mjs';
+
+
+//	process messages passed in to stdin and save to variable $payload
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+var payload = "";
+process.stdin.on('data', (chunk) => {
+	payload += chunk;
+});
+
+const envs = () => {
+	//	get all SERF-related environment variables
+	var r = {};
+	Object.keys(process.env).forEach(k => {
+		if (/SERF/.test(k)) {
+			r[k] = process.env[k];
+		}
+	});
+	return r;
+};
+
+const log = json => {
+	try {
+		//	log well-formed messages
+		const rr = JSON.stringify(json, null, "\t") + "\n";
+		appendFileSync(LOG_FILE_STDOUT, rr);
+		return true;
+	} catch (e) {
+		//	also log malformed messages
+		console.error(e);
+		appendFileSync(LOG_FILE_STDERR, json);
+		return false;
+	}
+};
+
+const decodePayload = base64input => {
+	const buf = Buffer.from(base64input.trim(), 'base64');
+	const json = buf.toString('utf8');
+	const r = JSON.parse(json);
+	//const r = json;
+	return r;
+};
+
+process.stdin.on('end', () => {
+	const env = envs();
+	var msg = {
+		"event": "unrecognized user event",
+		"name": env.SERF_EVENT,
+		payload
+	};
+	switch (env.SERF_EVENT) {
+
+		case 'user':
+			if (/cabal/.test(env.SERF_USER_EVENT)) {
+				msg = decodePayload(payload);
+				switch (msg.meta.action) {
+					case 'marco2':
+						polo2(msg).then(console.log).catch(console.error);
+						break;
+					default:
+						msg.debug = 'A custom user event with no handler';
+				}
+			} else {
+				//	just log it
+			}
+			break;
+
+		case 'query':
+			if (/^ca\.fukt\.cabal\//.test(env.SERF_QUERY_NAME)) {
+				try {
+					msg = decodePayload(payload);
+					switch (msg.meta.action) {
+						case 'everyone-else':
+							everyoneElse(msg).then(response => {
+								if (response) {
+									console.log(response);
+								} else {
+									console.log('i am me');
+								}
+							});
+							break;
+						case 'marco':
+							polo(msg).then(console.log).catch(console.error);
+							break;
+						default:
+							//console.log(msg);
+							catchAll(msg).then(console.log).catch(console.error);
+							break;
+					}
+				} catch (e) {
+					msg = {
+						"originalMessage": payload,
+						"error": e
+					};
+				}
+			} else {
+				//	just log it
+			}
+			break;
+
+		case 'member-join':
+		case 'member-leave':
+		//case 'member-update':
+		default:
+			let lines = payload.split("\n").shift().trim().split("\t");
+			msg = {
+				"event": env.SERF_EVENT,
+				"node": {
+					"name": lines[0],
+					"address": lines[1],
+					"tags": lines[3]
+				}
+			};
+			memberEvent(msg);
+			break;
+		case 'member-update':
+			//	don't do nuthin
+			break;
+	}
+	//	log the event
+	const r = msg;
+	log(r);
+
+});

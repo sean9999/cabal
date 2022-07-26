@@ -1,10 +1,10 @@
 {
 	"event_handlers": [
-		"${CABAL_ROOT}/handlers/all"
+		"/home/seanmacdonald/.config/cabal/handlers/all.mjs"
 	],
 	"profile": "lan",
 	"replay_on_join": false,
 	"tags": {
-		"${CABAL_NAMESPACE}/version": "${CABAL_VERSION}"
+		"ca.fukt.cabal/version": "v0.0.2"
 	}
 }
